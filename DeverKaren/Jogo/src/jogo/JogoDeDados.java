@@ -1,0 +1,55 @@
+package jogo;
+
+import java.util.Scanner;
+import java.util.InputMismatchException;
+
+public class JogoDeDados {
+
+    public static void main(String[] args) {
+
+        int pontos = 0;
+
+        boolean sair = false;
+        System.out.println("Digite (9) a qualquer momento para sair do jogo");
+        System.out.println("Digite (0) para reiniciar o jogo");
+
+        while (!sair) {
+            System.out.println("Você tem " + pontos + " pontos!");
+
+            Scanner s = new Scanner(System.in);
+            System.out.println("Qual seu chute?");
+            int comando = s.nextInt();
+
+            if (9 == comando) {
+                break;
+            }if (0 == comando) {
+                pontos = 0;
+                break;
+            } else if (comando >= 1 && comando <= 6){
+                boolean resultado = jogaDado(comando);
+                if (resultado) {
+                break;
+                }
+            } else {
+                System.out.println("Digite um numero válido");
+            }
+        }
+
+
+    }
+
+    private static boolean jogaDado(int chute) {
+
+        Random r = new Random();
+        int dado = r.nextInt(6) + 1;
+
+        System.out.println("Resultado dos dados é: " + dado);
+
+        if (dado == chute) {
+            System.out.println("Você errou! :-C");
+            return true;
+        } else {
+            System.out.println("Parabéns, você acertou!! :-D ");
+            return false;
+        }
+    }
